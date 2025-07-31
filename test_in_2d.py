@@ -1,18 +1,21 @@
 import numpy as np
-from .regression import findparams
+from regression import findparams
 import matplotlib.pyplot as plt
 
+def true_func(x):
+    return 6 * np.sin(0.7*x**3) - 5*x**2 + x - 2
+
+xvals = np.random.uniform(0, 100, size=10)
+polyorder = 1
+
 dpoints = np.array([
-    [1,-5],
-    [4,-10],
-    [10,5],
-    [5,-20]
+    [x, true_func(x)]
+    for x in xvals
 ])
-polyorder = 3
 
 params = findparams(dpoints, polyorder)
 
-def func(x):
+def f(x):
     res = 0
     for i,p in enumerate(params):
         res += x**i*p
@@ -20,7 +23,7 @@ def func(x):
 
 fig, ax = plt.subplots()
 x = np.linspace(dpoints[:,0].min()-1, dpoints[:,0].max()+1, 100)
-y = func(x)
+y = f(x)
 ax.plot(x,y)
-ax.scatter(dpoints[:,0],dpoints[:,1])
+ax.scatter(dpoints[:,0],true_func(dpoints[:,0]))
 plt.show()
