@@ -52,5 +52,4 @@ ax.set_xlabel('x')
 ax.set_ylabel('y')
 ax.set_zlabel('z')
 
-plt.show()
 plt.savefig(this/'test_3D')

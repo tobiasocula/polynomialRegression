@@ -24,5 +24,4 @@ ax = fig.add_subplot(projection='3d')
 
 ax.scatter(xvals, yvals, zvals, marker="o")
 ax.plot(xvals_fit, yvals_fit, zvals_fit)
-plt.show()
 plt.savefig(this/'test_parametrisation')
