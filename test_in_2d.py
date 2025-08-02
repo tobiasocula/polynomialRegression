@@ -1,5 +1,5 @@
 import numpy as np
-from regression import findparams
+from regression import regression_2D
 import matplotlib.pyplot as plt
 
 def true_func(x):
@@ -13,13 +13,7 @@ dpoints = np.array([
     for x in xvals
 ])
 
-params = findparams(dpoints, polyorder)
-
-def f(x):
-    res = 0
-    for i,p in enumerate(params):
-        res += x**i*p
-    return res
+f, params = regression_2D(dpoints, polyorder)
 
 fig, ax = plt.subplots()
 x = np.linspace(dpoints[:,0].min()-1, dpoints[:,0].max()+1, 100)
