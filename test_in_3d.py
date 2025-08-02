@@ -1,19 +1,21 @@
 import numpy as np
 from regression import regression_multi_D
 import matplotlib.pyplot as plt
-import sys
+from pathlib import Path
+
+this = Path(__file__).resolve().parent
 
 def true_func(x1, x2):
     return 2 + 3*x1 - x2 + 0.5*x1**2 + x1*x2 - 0.3*x2**2
 
-x1_vals = np.random.uniform(0, 100, size=10)
-x2_vals = np.random.uniform(0, 100, size=10)
-polyorder = 2
+xvals = np.random.uniform(0, 100, size=10)
+yvals = np.random.uniform(0, 100, size=10)
+polyorder = 1
 
 
 dpoints = np.array([
-    [x1, x2, true_func(x1, x2)]
-    for x1, x2 in zip(x1_vals, x2_vals)
+    [x, y, true_func(x, y)]
+    for x, y in zip(xvals, yvals)
 ])
 
 
@@ -45,9 +47,10 @@ fig = plt.figure()
 ax = plt.axes(projection='3d')
 ax.plot_surface(X, Y, Z, rstride=1, cstride=1,
                 cmap='viridis', edgecolor='none')
-ax.scatter(x1_vals, x2_vals, [true_func(x1, x2) for x1,x2 in zip(x1_vals, x2_vals)], marker='o')
+ax.scatter(xvals, yvals, [true_func(x1, x2) for x1,x2 in zip(xvals, yvals)], marker='o')
 ax.set_xlabel('x')
 ax.set_ylabel('y')
 ax.set_zlabel('z')
 
 plt.show()
+plt.savefig(this/'test_3D')

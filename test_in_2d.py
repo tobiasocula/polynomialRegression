@@ -1,17 +1,17 @@
 import numpy as np
 from regression import regression_2D
 import matplotlib.pyplot as plt
+from pathlib import Path
 
-def true_func(x):
-    return 6 * np.sin(0.7*x**3) - 5*x**2 + x - 2
+this = Path(__file__).resolve().parent
 
-xvals = np.random.uniform(0, 100, size=10)
-polyorder = 1
+xvals = np.random.uniform(0, 20, size=10)
+def func(x):
+    return 2*x+3
+yvals = func(xvals) + np.random.uniform(-10, 10, size=10)
+polyorder = 3
 
-dpoints = np.array([
-    [x, true_func(x)]
-    for x in xvals
-])
+dpoints = np.array([xvals, yvals]).T
 
 f, params = regression_2D(dpoints, polyorder)
 
@@ -19,5 +19,6 @@ fig, ax = plt.subplots()
 x = np.linspace(dpoints[:,0].min()-1, dpoints[:,0].max()+1, 100)
 y = f(x)
 ax.plot(x,y)
-ax.scatter(dpoints[:,0],true_func(dpoints[:,0]))
+ax.scatter(dpoints[:,0],dpoints[:,1])
 plt.show()
+plt.savefig(this/"test_2D")
