@@ -15,7 +15,8 @@ a_{2,k-m+1} & a_{2,k-m+2} & \cdots & a_{2,k} \\
 \vdots      & \vdots      & \ddots & \vdots \\
 a_{n,k-m+1} & a_{n,k-m+2} & \cdots & a_{n,k}
 \end{pmatrix}
-$$ 
+$$
+
 The coefficients $c_0,c_1,...,c_l$ will then define the returned function.  
 Examples of results:  
 1. A best-fit polynomial of degree 3 for 10 datapoints in $\mathbb{R}^2$ looks like  
